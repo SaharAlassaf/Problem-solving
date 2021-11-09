@@ -16,20 +16,22 @@ const users = [
   },
 ];
 
-
-const statusUser = (arr) => {
-  let st = {};
-  arr.forEach((item, i) => {
-    if (item.status == "online" && item.lastActivity >= 10) {
-      st.away =  []
-      st.away.push(item.username);
+const statusUser = (friends) => {
+  let status = {};
+  let online = [];
+  let offline = [];
+  let away = [];
+  friends.forEach((item, i) => {
+    if (item.status == "online" && item.lastActivity <= 10) {
+      online.push(item.username);
+      status.online = online;
     } else if (item.status == "offline") {
-      st.offline =  []
-      st.offline.push(item.username);
+      offline.push(item.username);
+      status.offline = offline;
     } else {
-      st.online =  []
-      st.online.push(item.username);
+      away.push(item.username);
+      status.away = away;
     }
   });
-  return st
+  return status;
 };
