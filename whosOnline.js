@@ -16,7 +16,7 @@ const users = [
   },
 ];
 
-const statusUser = (friends) => {
+const whosOnline = (friends) => {
   let status = {};
   let online = [];
   let offline = [];
@@ -34,4 +34,4 @@ const statusUser = (friends) => {
     }
   });
   return status;
-};
+}
