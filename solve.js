@@ -1,6 +1,5 @@
 function solve(eq) {
-  return eq
-    .split("/").join(" / ")
+  return eq.split("/").join(" / ")
     .split("+").join(" + ")
     .split("*").join(" * ")
     .split("-").join(" - ")
