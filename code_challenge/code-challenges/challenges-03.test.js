@@ -23,6 +23,9 @@ function lower(str) {
 
 const updateAnimal = (arr, callback) => {
   // Solution code here...
+  let newArr = [];
+  arr.forEach((element) => newArr.push(callback(element)));
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -35,6 +38,7 @@ For example: 'Cat' would come before 'apple'
 
 const sortNames = (arr) => {
   // Solution code here...
+  return arr.sort();
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -47,6 +51,7 @@ HINT: Beware... JS default is "Lexical" ordering.
 
 const sortNumbers = (arr) => {
   // Solution code here...
+  return arr.sort((a, b) => a - b);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -59,6 +64,7 @@ HINT: Do it with a custom sort callback, not with using `.reverse()`. ;)
 
 const sortBackwards = (arr) => {
   // Solution code here...
+  return arr.sort((a, b) => b - a);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -73,6 +79,7 @@ For example, ['Alphabet', 'Zebra', 'alphabet', 'carrot'] is correctly sorted.
 
 const alphabetize = (arr) => {
   // Solution code here...
+  return arr.sort();
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -90,6 +97,7 @@ Here is an example of the input:
 
 const sortByPrice = (arr) => {
   // Solution code here...
+  return arr.sort((a, b) => a.price - b.price);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -102,6 +110,7 @@ For example, ['Alphabet', 'alphabet', 'carrot', 'Zebra'] is correctly sorted, an
 
 const alphabetizeBetter = (arr) => {
   // Solution code here...
+  return arr.sort((a, b) => a.localeCompare(b));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -112,6 +121,7 @@ Write a function named sortByLength that takes in an array of strings and return
 
 const sortByLength = (arr) => {
   // Solution code here...
+  return arr.sort((a, b) => a.length - b.length);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -124,6 +134,7 @@ For example, [1, 14, 0.2, -281, 54782] is only correctly sorted in that order.
 
 const sortNumbersByLength = (arr) => {
   // Solution code here...
+  return arr.sort((a, b) => a.toString().length - b.toString().length);
 };
 
 /*-----------------------------------------------------------------------------------------------
@@ -146,6 +157,7 @@ const people = [
 
 const sortPeople = (arr) => {
   // Solution code here...
+  return arr.sort((a, b) => (b.lastName > a.lastName ? -1 : 0));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -160,6 +172,16 @@ If two people have the same full name, the younger one should come first. Do not
 
 const sortPeopleBetter = (arr) => {
   // Solution code here...
+  return arr.sort((a, b) => {
+    if (a.firstName === b.firstName) {
+      if (a.lastName === b.lastName) {
+        return a.age - b.age;
+      }
+      return a.lastName > b.lastName ? 0 : -1;
+    } else {
+      return a.firstName > b.firstName ? 0 : -1;
+    }
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -186,6 +208,14 @@ const meetings = [
 
 const sortMeetingsByDay = (arr) => {
   // Solution code here...
+  const daysOrder = {
+    Monday: 1,
+    Tuesday: 2,
+    Wednesday: 3,
+    Thursday: 4,
+    Friday: 5,
+  };
+  return arr.sort((a, b) => daysOrder[a.dayOfWeek] - daysOrder[b.dayOfWeek]);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -200,6 +230,14 @@ You DO NOT need to use your solution to Challenge 9 in completing Challenge 10.
 
 const sortSchedule = (arr) => {
   // Solution code here...
+  return sortMeetingsByDay(arr).sort((a, b) => {
+    if(a.dayOfWeek === b.dayOfWeek){
+      if(a.start === b.start){
+        return (a.end - a.start) - (b.end - b.start);
+      }
+      return a.start - b.start;
+    }
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
