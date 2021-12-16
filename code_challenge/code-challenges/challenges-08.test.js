@@ -9,7 +9,7 @@ Write a function named returnTen, takes in a string and uses split and splice to
 
 function returnTen(str) {
   // Solution code here...
-  return str.split('').splice(-10);
+  return str.split("").splice(-10);
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -22,7 +22,7 @@ For example, typeNum([1, 'bob' ,3]) returns [1,3].
 
 const typeNum = (arr) => {
   // Solution code here...
-  return arr.filter(element => typeof element === "number")
+  return arr.filter((element) => typeof element === "number");
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ For example, containsAnd(['panda', 'ran', 'and']) returns ['panda', 'and'].
 
 const containsAnd = (arr) => {
   // Solution code here...
-  return arr.filter(element => element.includes('and'))
+  return arr.filter((element) => element.includes("and"));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ For example, oddValues([1,2,3]) returns [1,3].
 
 const oddValues = (arr) => {
   // Solution code here...
-  return arr.filter(element => element%2 === 1)
+  return arr.filter((element) => element % 2 === 1);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -63,8 +63,7 @@ For example, filterStringsWithVowels('gregor','hound','xyz') returns ['gregor', 
 
 const filterStringsWithVowels = (arr) => {
   // Solution code here...
-  return arr.filter(element => element.match(/[aeiou]/gi))
-
+  return arr.filter((element) => element.match(/[aeiou]/gi));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -77,7 +76,7 @@ For example, notInFirstArray([1,2,3], [1,2,3,4]) returns [4].
 
 const notInFirstArray = (forbiddenValues, arr) => {
   // Solution code here...
-  return arr.filter((element) => !forbiddenValues.includes(element))
+  return arr.filter((element) => !forbiddenValues.includes(element));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -93,30 +92,30 @@ const snorlaxData = {
     {
       stat: {
         url: "https://pokeapi.co/api/v2/stat/6/",
-        name: "speed",
+        name: "speed"
       },
       effort: 5,
-      baseStat: 30,
+      baseStat: 30
     },
     {
       stat: {
         url: "https://pokeapi.co/api/v2/stat/5/",
-        name: "special-defense",
+        name: "special-defense"
       },
       effort: 2,
-      baseStat: 110,
+      baseStat: 110
     },
     {
       stat: {
         url: "https://pokeapi.co/api/v2/stat/4/",
-        name: "special-attack",
+        name: "special-attack"
       },
       effort: 9,
-      baseStat: 65,
-    },
+      baseStat: 65
+    }
   ],
   name: "snorlax",
-  weight: 4600,
+  weight: 4600
 };
 
 const getBaseStatGreaterThan = (arr, minBaseStat) => {
@@ -134,7 +133,9 @@ For example, getStatName(snorlaxData.stats, 50) will return ['special-defense', 
 
 const getStatName = (arr, minBaseStat) => {
   // Solution code here...
-  return getBaseStatGreaterThan(arr, minBaseStat).map((element) => element.stat.name);
+  return getBaseStatGreaterThan(arr, minBaseStat).map(
+    (element) => element.stat.name
+  );
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -148,42 +149,42 @@ const characters = [
     name: "Eddard",
     spouse: "Catelyn",
     children: ["Robb", "Sansa", "Arya", "Bran", "Rickon"],
-    house: "Stark",
+    house: "Stark"
   },
   {
     name: "Jon",
     spouse: "Lysa",
     children: ["Robin"],
-    house: "Arryn",
+    house: "Arryn"
   },
   {
     name: "Cersei",
     spouse: "Robert",
     children: ["Joffrey", "Myrcella", "Tommen"],
-    house: "Lannister",
+    house: "Lannister"
   },
   {
     name: "Daenarys",
     spouse: "Khal Drogo",
     children: ["Drogon", "Rhaegal", "Viserion"],
-    house: "Targaryen",
+    house: "Targaryen"
   },
   {
     name: "Mace",
     spouse: "Alerie",
     children: ["Margaery", "Loras"],
-    house: "Tyrell",
+    house: "Tyrell"
   },
   {
     name: "Sansa",
     spouse: "Tyrion",
-    house: "Stark",
+    house: "Stark"
   },
   {
     name: "Jon",
     spouse: null,
-    house: "Snow",
-  },
+    house: "Snow"
+  }
 ];
 
 const getCharactersWithoutChildren = (arr) => {
@@ -201,8 +202,7 @@ For example: evenOddNumericValues(['Gregor', 2, 4, 1]) returns ['even', 'even', 
 
 const evenOddNumericValues = (arr) => {
   // Solution code here...
-  return typeNum(arr).map(element => element%2 === 0? "even":"odd")
-
+  return typeNum(arr).map((element) => (element % 2 === 0 ? "even" : "odd"));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -228,7 +228,7 @@ describe("Testing challenge 1", () => {
       "o",
       "r",
       "l",
-      "d",
+      "d"
     ]);
     expect(returnTen("world")).toStrictEqual(["w", "o", "r", "l", "d"]);
   });
@@ -247,7 +247,7 @@ describe("Testing challenge 3", () => {
   test("It should return an array of strings containing the word and", () => {
     expect(containsAnd(["panda", "ran", "and"])).toStrictEqual([
       "panda",
-      "and",
+      "and"
     ]);
     expect(containsAnd(["banana", "bob", "xyz"])).toStrictEqual([]);
     expect(containsAnd([])).toStrictEqual([]);
@@ -258,7 +258,7 @@ describe("Testing challenge 3", () => {
 describe("Testing challenge 4", () => {
   test("It should return an array containing only odd integers", () => {
     expect(oddValues([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])).toStrictEqual([
-      1, 3, 5, 7, 9,
+      1, 3, 5, 7, 9
     ]);
     expect(oddValues([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).length).toStrictEqual(5);
     expect(oddValues([2, 3, 4, 179])).toStrictEqual([3, 179]);
@@ -270,14 +270,14 @@ describe("Testing challenge 5", () => {
   test("It should return an array containing only words that have vowels", () => {
     expect(filterStringsWithVowels(["gregor", "hound", "xyz"])).toStrictEqual([
       "gregor",
-      "hound",
+      "hound"
     ]);
     expect(
       filterStringsWithVowels(["gregor", "hound", "xyz"]).length
     ).toStrictEqual(2);
     expect(filterStringsWithVowels(["a", "b", "cdefg"])).toStrictEqual([
       "a",
-      "cdefg",
+      "cdefg"
     ]);
     expect(
       filterStringsWithVowels([
@@ -307,7 +307,7 @@ describe("Testing challenge 5", () => {
         "x",
         "y",
         "z",
-        "",
+        ""
       ])
     ).toStrictEqual(["a", "e", "i", "o", "u"]);
   });
@@ -334,7 +334,7 @@ describe("Testing challenge 6", () => {
   test("It should also work with an array of strings", () => {
     expect(notInFirstArray(firstStrings, secondStrings)).toStrictEqual([
       "Gary",
-      "Charlotte",
+      "Charlotte"
     ]);
     expect(notInFirstArray(firstStrings, secondStrings).length).toStrictEqual(
       2
@@ -354,11 +354,11 @@ describe("Testing challenge 7", () => {
       {
         stat: {
           url: "https://pokeapi.co/api/v2/stat/5/",
-          name: "special-defense",
+          name: "special-defense"
         },
         effort: 2,
-        baseStat: 110,
-      },
+        baseStat: 110
+      }
     ]);
     expect(getBaseStatGreaterThan(snorlaxData.stats, 75).length).toStrictEqual(
       1
@@ -372,7 +372,7 @@ describe("Testing challenge 7", () => {
           { baseStat: 10 },
           { baseStat: -85 },
           { baseStat: 0 },
-          { baseStat: -50 },
+          { baseStat: -50 }
         ],
         -60
       )
@@ -384,7 +384,7 @@ describe("Testing challenge 8", () => {
   test("It should return the name of the stats that exceed that maximum", () => {
     expect(getStatName(snorlaxData.stats, 50)).toStrictEqual([
       "special-defense",
-      "special-attack",
+      "special-attack"
     ]);
     expect(getStatName(snorlaxData.stats, 50).length).toStrictEqual(2);
   });
@@ -401,7 +401,7 @@ describe("Testing challenge 8", () => {
           { baseStat: 10, stat: { name: "one" } },
           { baseStat: -85, stat: { name: "two" } },
           { baseStat: 0, stat: { name: "three" } },
-          { baseStat: -50, stat: { name: "four" } },
+          { baseStat: -50, stat: { name: "four" } }
         ],
         -60
       )
@@ -413,7 +413,7 @@ describe("Testing challenge 9", () => {
   test("It should return an array containing characters who do not have children", () => {
     expect(getCharactersWithoutChildren(characters)).toStrictEqual([
       { name: "Sansa", spouse: "Tyrion", house: "Stark" },
-      { name: "Jon", spouse: null, house: "Snow" },
+      { name: "Jon", spouse: null, house: "Snow" }
     ]);
     expect(getCharactersWithoutChildren(characters).length).toStrictEqual(2);
   });
@@ -424,7 +424,7 @@ describe("Testing challenge 10", () => {
     expect(evenOddNumericValues(["Gregor", 2, 4, 1])).toStrictEqual([
       "even",
       "even",
-      "odd",
+      "odd"
     ]);
     expect(evenOddNumericValues(["Gregor", 2, 4, 1]).length).toStrictEqual(3);
     expect(evenOddNumericValues(["a", "b", "c"])).toStrictEqual([]);
@@ -433,7 +433,7 @@ describe("Testing challenge 10", () => {
     expect(evenOddNumericValues(["1", 2, 3, "4", 5, "6"])).toStrictEqual([
       "even",
       "odd",
-      "odd",
+      "odd"
     ]);
   });
 });
