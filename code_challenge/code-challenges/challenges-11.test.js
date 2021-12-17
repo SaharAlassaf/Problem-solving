@@ -13,6 +13,7 @@ You can assume that neither firstName nor lastName will be blank
 ------------------------------------------------------------------------------------------------ */
 const toLastNames = (people) => {
   // Solution code here...
+  return people.map((element) => element.firstName + " " + element.lastName);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -25,6 +26,7 @@ If the PIN is four numerical digits long, return true. Otherwise, return false.
 
 const validatePin = (pin) => {
   // Solution code here...
+  return /\b[0-9]{4}\b/gim.test(pin);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -37,6 +39,7 @@ If the word is between 5 and 10 characters long, return true. Otherwise, return 
 
 const validateWord = (word) => {
   // Solution code here...
+  return /\b[A-Za-z]{5,10}\b/gim.test(word);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -49,6 +52,7 @@ If it does, return true. If not, return false.
 
 const hasNumber = (string) => {
   // Solution code here...
+  return /^([a-z])[a-z]*.*[0-9].*/gim.test(string);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -69,6 +73,9 @@ Note: if you ever need to validate an email using a regex in practice, the Inter
 
 const validateEmail = (email) => {
   // Solution code here...
+  return /^[a-zA-Z0-9]*[-._]?[a-zA-Z0-9]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3}$/gim.test(
+    email
+  );
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -94,6 +101,7 @@ Return either true or false.
 
 const validatePhoneNumber = (phoneNumber) => {
   // Solution code here...
+  return /^(\(\d{3}\)|\d{3})[- ]?(\d{3})[- ]?(\d{4})$/.test(phoneNumber);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -107,6 +115,9 @@ findTagNames(['<div><h1>Hello, world!</h1></div>', '<p>Welcome to my site</p>'])
 
 const findTagNames = (elements) => {
   // Solution code here...
+  let tag = [];
+  elements.forEach((elements) => tag.push(...elements.match(/\/\w*/gim)));
+  return tag;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -123,7 +134,7 @@ describe("Testing challenge 1", () => {
   test("It should convert object to full name string", () => {
     const people = [
       { firstName: "Jane", lastName: "Doe" },
-      { firstName: "James", lastName: "Bond" },
+      { firstName: "James", lastName: "Bond" }
     ];
 
     expect(toLastNames(people)).toStrictEqual(["Jane Doe", "James Bond"]);
@@ -232,7 +243,7 @@ describe("Testing challenge 7", () => {
     expect(
       findTagNames([
         "<div><h1>Hello, world!</h1></div>",
-        "<p>Welcome to my site</p>",
+        "<p>Welcome to my site</p>"
       ])
     ).toStrictEqual(["/h1", "/div", "/p"]);
   });
