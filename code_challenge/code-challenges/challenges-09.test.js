@@ -20,6 +20,11 @@ Becomes:
 
 function transformToLis(obj) {
   // Solution code here...
+  let arr = [];
+  for (const [key, value] of Object.entries(obj)) {
+    arr.push(`<li>${key}: ${value}</li>`);
+  }
+  return arr;
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -31,6 +36,9 @@ Write a function named addValues that, given an array of numbers as input, uses 
 
 const addValues = (arr) => {
   // Solution code here...
+  return arr.reduce((accumulator, current) => {
+    return accumulator + current;
+  }, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -47,6 +55,9 @@ Write a function named addPurchases that, given an array of objects as input, us
 
 const addPurchases = (arr) => {
   // Solution code here...
+  return arr.reduce((accumulator, current) => {
+    return accumulator + current.purchasePrice;
+  }, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -59,6 +70,9 @@ Note: You may not use the array's built-in length property.
 
 const countNumberOfElements = (arr) => {
   // Solution code here...
+  return arr.reduce((accumulator) => {
+    return accumulator + 1;
+  }, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -76,7 +90,7 @@ let starWarsData = [
     skin_color: "fair",
     eye_color: "blue",
     birth_year: "19BBY",
-    gender: "male",
+    gender: "male"
   },
   {
     name: "C-3PO",
@@ -86,7 +100,7 @@ let starWarsData = [
     skin_color: "gold",
     eye_color: "yellow",
     birth_year: "112BBY",
-    gender: "n/a",
+    gender: "n/a"
   },
   {
     name: "R2-D2",
@@ -96,7 +110,7 @@ let starWarsData = [
     skin_color: "white, blue",
     eye_color: "red",
     birth_year: "33BBY",
-    gender: "n/a",
+    gender: "n/a"
   },
   {
     name: "Darth Vader",
@@ -106,7 +120,7 @@ let starWarsData = [
     skin_color: "white",
     eye_color: "yellow",
     birth_year: "41.9BBY",
-    gender: "male",
+    gender: "male"
   },
   {
     name: "Leia Organa",
@@ -116,12 +130,15 @@ let starWarsData = [
     skin_color: "light",
     eye_color: "brown",
     birth_year: "19BBY",
-    gender: "female",
-  },
+    gender: "female"
+  }
 ];
 
 const returnNames = (arr) => {
   // Solution code here...
+  return arr.reduce((accumulator, current) => {
+    return [...accumulator, current.name];
+  }, []);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -134,6 +151,9 @@ Note: You must use reduce for this challenge. You may not use the built-in .reve
 
 const reversedString = (str) => {
   // Solution code here...
+  return str
+    .split("")
+    .reduce((accumulator, current) => current + accumulator, "");
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -147,46 +167,51 @@ const characters = [
     name: "Eddard",
     spouse: "Catelyn",
     children: ["Robb", "Sansa", "Arya", "Bran", "Rickon"],
-    house: "Stark",
+    house: "Stark"
   },
   {
     name: "Jon",
     spouse: "Lysa",
     children: ["Robin"],
-    house: "Arryn",
+    house: "Arryn"
   },
   {
     name: "Cersei",
     spouse: "Robert",
     children: ["Joffrey", "Myrcella", "Tommen"],
-    house: "Lannister",
+    house: "Lannister"
   },
   {
     name: "Daenarys",
     spouse: "Khal Drogo",
     children: ["Drogon", "Rhaegal", "Viserion"],
-    house: "Targaryen",
+    house: "Targaryen"
   },
   {
     name: "Mace",
     spouse: "Alerie",
     children: ["Margaery", "Loras"],
-    house: "Tyrell",
+    house: "Tyrell"
   },
   {
     name: "Sansa",
     spouse: "Tyrion",
-    house: "Stark",
+    house: "Stark"
   },
   {
     name: "Jon",
     spouse: null,
-    house: "Snow",
-  },
+    house: "Snow"
+  }
 ];
 
 const countNumberOfChildren = (arr) => {
   // Solution code here...
+  return arr.reduce((accumulator, current) => {
+    return current.children
+      ? accumulator + current.children.length
+      : accumulator;
+  }, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -199,6 +224,10 @@ Hint: The accumulator should begin as { count: 0, sum: 0 }
 
 const calculateAverage = (arr) => {
   // Solution code here...
+  return arr.reduce(
+    (accumulator, current) => accumulator + current / arr.length,
+    0
+  );
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -220,6 +249,9 @@ const isPrime = (value) => {
 
 const countPrimeNumbers = (arr) => {
   // Solution code here...
+  return arr.reduce((accumulator, current) => {
+    return isPrime(current) ? accumulator + 1 : accumulator;
+  }, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -235,34 +267,38 @@ const snorlaxData = {
     {
       stat: {
         url: "https://pokeapi.co/api/v2/stat/6/",
-        name: "speed",
+        name: "speed"
       },
       effort: 5,
-      baseStat: 30,
+      baseStat: 30
     },
     {
       stat: {
         url: "https://pokeapi.co/api/v2/stat/5/",
-        name: "special-defense",
+        name: "special-defense"
       },
       effort: 2,
-      baseStat: 110,
+      baseStat: 110
     },
     {
       stat: {
         url: "https://pokeapi.co/api/v2/stat/4/",
-        name: "special-attack",
+        name: "special-attack"
       },
       effort: 9,
-      baseStat: 65,
-    },
+      baseStat: 65
+    }
   ],
   name: "snorlax",
-  weight: 4600,
+  weight: 4600
 };
 
 const extractStat = (statName, arr) => {
   // Solution code here...
+  return arr.reduce((accumulator, current) => {
+    if (statName === current.stat.name) accumulator = current;
+    return accumulator;
+  }, "");
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -277,6 +313,12 @@ Write a function named extractChildren that, given the array of characters from 
 
 const extractChildren = (arr) => {
   // Solution code here...
+  return arr
+    .filter((element) => element.name.includes("a"))
+    .reduce((accumulator, current) => {
+      current.children? accumulator.push(...current.children) : accumulator;
+      return accumulator
+    }, []);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -314,7 +356,7 @@ describe("Testing challenge 3", () => {
     expect(
       addPurchases([
         { item: "switch", purchasePrice: 399 },
-        { item: "toothpaste", purchasePrice: 2 },
+        { item: "toothpaste", purchasePrice: 2 }
       ])
     ).toStrictEqual(401);
     expect(addPurchases([])).toStrictEqual(0);
@@ -334,7 +376,7 @@ describe("Testing challenge 5", () => {
       "C-3PO",
       "R2-D2",
       "Darth Vader",
-      "Leia Organa",
+      "Leia Organa"
     ]);
     expect(returnNames(starWarsData).length).toStrictEqual(5);
   });
@@ -369,7 +411,7 @@ describe("Testing challenge 10", () => {
     expect(extractStat("speed", snorlaxData.stats)).toStrictEqual({
       stat: { url: "https://pokeapi.co/api/v2/stat/6/", name: "speed" },
       effort: 5,
-      baseStat: 30,
+      baseStat: 30
     });
   });
 });
@@ -386,7 +428,7 @@ describe("Testing challenge 11", () => {
       "Rhaegal",
       "Viserion",
       "Margaery",
-      "Loras",
+      "Loras"
     ]);
     expect(extractChildren(characters).length).toStrictEqual(10);
   });

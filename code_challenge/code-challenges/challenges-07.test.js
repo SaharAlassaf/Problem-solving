@@ -127,28 +127,28 @@ const snorlaxAbilities = {
       is_hidden: true,
       ability: {
         url: "https://pokeapi.co/api/v2/ability/82/",
-        name: "gluttony",
-      },
+        name: "gluttony"
+      }
     },
     {
       slot: 2,
       is_hidden: false,
       ability: {
         url: "https://pokeapi.co/api/v2/ability/56/",
-        name: "cute charm",
-      },
+        name: "cute charm"
+      }
     },
     {
       slot: 1,
       is_hidden: false,
       ability: {
         url: "https://pokeapi.co/api/v2/ability/17/",
-        name: "immunity",
-      },
-    },
+        name: "immunity"
+      }
+    }
   ],
   name: "snorlax",
-  weight: 4600,
+  weight: 4600
 };
 
 const extractAbilities = (arr) => {
@@ -173,35 +173,38 @@ const snorlaxStats = {
     {
       stat: {
         url: "https://pokeapi.co/api/v2/stat/6/",
-        name: "speed",
+        name: "speed"
       },
       effort: 5,
-      baseStat: 30,
+      baseStat: 30
     },
     {
       stat: {
         url: "https://pokeapi.co/api/v2/stat/5/",
-        name: "special-defense",
+        name: "special-defense"
       },
       effort: 2,
-      baseStat: 110,
+      baseStat: 110
     },
     {
       stat: {
         url: "https://pokeapi.co/api/v2/stat/4/",
-        name: "special-attack",
+        name: "special-attack"
       },
       effort: 9,
-      baseStat: 65,
-    },
+      baseStat: 65
+    }
   ],
   name: "snorlax",
-  weight: 4600,
+  weight: 4600
 };
 
 const extractStats = (arr) => {
   // Solution code here...
-  return arr.map((element) =>( {name: element.stat.name, total: element.effort+ element.baseStat}));
+  return arr.map((element) => ({
+    name: element.stat.name,
+    total: element.effort + element.baseStat
+  }));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -234,7 +237,7 @@ describe("Testing challenge 3", () => {
     expect(addQuestion(["hello", "301", "students"])).toStrictEqual([
       "hello?",
       "301?",
-      "students?",
+      "students?"
     ]);
   });
 });
@@ -275,7 +278,7 @@ describe("Testing challenge 6", () => {
 describe("Testing challenge 7", () => {
   test("It should return an array containing the character code for each letter", () => {
     expect(charCode(["C", "o", "d", "e", "3", "0", "1"])).toStrictEqual([
-      67, 111, 100, 101, 51, 48, 49,
+      67, 111, 100, 101, 51, 48, 49
     ]);
     expect(charCode(["C", "o", "d", "e", "3", "0", "1"]).length).toStrictEqual(
       7
@@ -293,7 +296,7 @@ describe("Testing challenge 8", () => {
       "odd",
       "odd",
       "even",
-      "odd",
+      "odd"
     ]);
     expect(evenOdd([5, 8, 2, 6, 9, 13, 542, 541]).length).toStrictEqual(8);
   });
@@ -304,7 +307,7 @@ describe("Testing challenge 8", () => {
       "odd",
       "odd",
       "odd",
-      "odd",
+      "odd"
     ]);
     expect(evenOdd([1, 3, 5, 7, 9]).length).toStrictEqual(5);
   });
@@ -315,7 +318,7 @@ describe("Testing challenge 8", () => {
       "even",
       "even",
       "even",
-      "even",
+      "even"
     ]);
     expect(evenOdd([2, 4, 6, 8, 10]).length).toStrictEqual(5);
   });
@@ -325,7 +328,7 @@ describe("Testing challenge 8", () => {
       "odd",
       "even",
       "even",
-      "N/A",
+      "N/A"
     ]);
     expect(evenOdd([5, 8, 2, "hi"]).length).toStrictEqual(4);
   });
@@ -336,7 +339,7 @@ describe("Testing challenge 9", () => {
     expect(extractAbilities(snorlaxAbilities.abilities)).toStrictEqual([
       "gluttony",
       "cute charm",
-      "immunity",
+      "immunity"
     ]);
     expect(extractAbilities(snorlaxAbilities.abilities).length).toStrictEqual(
       3
@@ -349,7 +352,7 @@ describe("Testing challenge 10", () => {
     expect(extractStats(snorlaxStats.stats)).toStrictEqual([
       { name: "speed", total: 35 },
       { name: "special-defense", total: 112 },
-      { name: "special-attack", total: 74 },
+      { name: "special-attack", total: 74 }
     ]);
     expect(extractStats(snorlaxStats.stats).length).toStrictEqual(3);
   });
