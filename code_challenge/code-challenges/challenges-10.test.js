@@ -24,6 +24,7 @@ Returns: ['dyoll', 'eimaj'];
 
 const getNames = (arr) => {
   // Solution code here...
+  return arr.map((element) => element.name.split("").reverse().join(""));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -38,6 +39,11 @@ For example, count(5, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]]) returns 4.
 
 const count = (target, input) => {
   // Solution code here...
+  return input.reduce(
+    (accumulator, current) =>
+      accumulator + current.filter((element) => element === target).length,
+    0
+  );
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -52,6 +58,12 @@ For example, [[1, 2, 3, 4, 5], [6, 7, 2, 4, 5, 7], [9, 2, 3, 6,]] returns 66.
 
 const totalSum = (input) => {
   // Solution code here...
+  return input.reduce(
+    (accumulator, current) =>
+      accumulator +
+      current.reduce((accumulator, current) => accumulator + current, 0),
+    0
+  );
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -68,6 +80,14 @@ For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 
 const divisibleByFiveTwoToThePower = (input) => {
   // Solution code here...
+  return input.map((element) =>
+    element
+      .filter(
+        (element) =>
+          (typeof element === "number" && element % 5 === 0) || element === 0
+      )
+      .map((element) => Math.pow(2, element))
+  );
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -90,7 +110,7 @@ let starWarsData = [
     skin_color: "fair",
     eye_color: "blue",
     birth_year: "19BBY",
-    gender: "male",
+    gender: "male"
   },
   {
     name: "C-3PO",
@@ -100,7 +120,7 @@ let starWarsData = [
     skin_color: "gold",
     eye_color: "yellow",
     birth_year: "112BBY",
-    gender: "n/a",
+    gender: "n/a"
   },
   {
     name: "R2-D2",
@@ -110,7 +130,7 @@ let starWarsData = [
     skin_color: "white, blue",
     eye_color: "red",
     birth_year: "33BBY",
-    gender: "n/a",
+    gender: "n/a"
   },
   {
     name: "Darth Vader",
@@ -120,7 +140,7 @@ let starWarsData = [
     skin_color: "white",
     eye_color: "yellow",
     birth_year: "41.9BBY",
-    gender: "male",
+    gender: "male"
   },
   {
     name: "Leia Organa",
@@ -130,12 +150,13 @@ let starWarsData = [
     skin_color: "light",
     eye_color: "brown",
     birth_year: "19BBY",
-    gender: "female",
-  },
+    gender: "female"
+  }
 ];
 
 let findMaleAndFemale = (data) => {
   // Solution code here...
+  return data.map(element => (element.gender === "female" || element.gender === "male")? element.name : false ).filter(ele=> ele).join(" and ")
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -146,6 +167,8 @@ Write a function named findShortest that, given the Star Wars data from Challeng
 
 let findShortest = (data) => {
   // Solution code here...
+  let shortest = data.reduce((accumulator, current) =>accumulator.height > current.height? accumulator : current)
+  return shortest.name
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -164,7 +187,7 @@ describe("Testing challenge 1", () => {
     expect(
       getNames([
         { name: "lloyd", age: 32, shoeSize: 12 },
-        { name: "jamie", age: 21, shoeSize: 8 },
+        { name: "jamie", age: 21, shoeSize: 8 }
       ])
     ).toStrictEqual(["dyoll", "eimaj"]);
     expect(getNames([])).toStrictEqual([]);
@@ -177,21 +200,21 @@ describe("Testing challenge 2", () => {
       count(5, [
         [1, 3, 5, 7, 9],
         [5, 5, 5],
-        [1, 2, 3],
+        [1, 2, 3]
       ])
     ).toStrictEqual(4);
     expect(
       count(3, [
         [1, 3, 5, 7, 9],
         [5, 5, 5],
-        [1, 2, 3],
+        [1, 2, 3]
       ])
     ).toStrictEqual(2);
     expect(
       count(12, [
         [1, 3, 5, 7, 9],
         [5, 5, 5],
-        [1, 2, 3],
+        [1, 2, 3]
       ])
     ).toStrictEqual(0);
   });
@@ -208,7 +231,7 @@ describe("Testing challenge 3", () => {
     const nums = [
       [1, 2, 3, 4, 5],
       [6, 7, 2, 4, 5, 7],
-      [9, 2, 3, 6],
+      [9, 2, 3, 6]
     ];
 
     expect(totalSum(nums)).toStrictEqual(66);
@@ -221,7 +244,7 @@ describe("Testing challenge 4", () => {
       divisibleByFiveTwoToThePower([
         [10, 20, 5, 4],
         [5, 6, 7, 9],
-        [1, 10, 3],
+        [1, 10, 3]
       ])
     ).toStrictEqual([[1024, 1048576, 32], [32], [1024]]);
   });
@@ -230,7 +253,7 @@ describe("Testing challenge 4", () => {
     expect(
       divisibleByFiveTwoToThePower([
         [1, 2, 3],
-        [5, 10, 15],
+        [5, 10, 15]
       ])
     ).toStrictEqual([[], [32, 1024, 32768]]);
   });
@@ -240,7 +263,7 @@ describe("Testing challenge 4", () => {
       divisibleByFiveTwoToThePower([
         ["one", "two", "five"],
         ["5", "10", "15"],
-        [5],
+        [5]
       ])
     ).toStrictEqual([[], [], [32]]);
   });
@@ -255,7 +278,7 @@ describe("Testing challenge 5", () => {
       findMaleAndFemale([
         { name: "person", gender: "female" },
         { gender: "lol" },
-        { name: "persontwo", gender: "male" },
+        { name: "persontwo", gender: "male" }
       ])
     ).toStrictEqual("person and persontwo");
   });
