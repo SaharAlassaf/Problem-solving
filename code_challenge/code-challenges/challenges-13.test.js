@@ -8,6 +8,13 @@ Write a function named longestString that takes in an array of strings and retur
 
 const longestString = (arr) => {
   // Solution code here...
+  return arr.findIndex(
+    (element) =>
+      element ===
+      arr.reduce((accumulator, current) => {
+        return accumulator.length > current.length ? accumulator : current;
+      })
+  );
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -20,6 +27,7 @@ For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['t', 
 
 const firstLetters = (arr) => {
   // Solution code here...
+  return arr.map((element) => element[0]);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -32,6 +40,7 @@ For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['this
 
 const findHappiness = (arr) => {
   // Solution code here...
+  return arr.filter((element) => element.includes(":)"));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -44,6 +53,7 @@ For example, (123) 456-7890 returns 1234567890
 
 const standardizePhoneNumbers = (arr) => {
   // Solution code here...
+  return arr.map((element) => element.replace(/[^\d]/g, ""));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -56,6 +66,11 @@ For example, 'abcdefg' returns 'bdf'
 
 const onlyOddChars = (str) => {
   // Solution code here...
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    if (i % 2 !== 0) result += str[i];
+  }
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -66,6 +81,7 @@ Write a function named allHappy that takes in an array of strings and returns a 
 
 const allHappy = (arr) => {
   // Solution code here...
+  return arr.every((element) => element.includes(":)"));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -76,6 +92,7 @@ Write a function named findAnything that takes in an array of strings, along wit
 
 const findAnything = (arr, target) => {
   // Solution code here...
+  return arr.filter((element) => element.includes(target));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -86,6 +103,7 @@ Write a function named findEvery that takes in an array of strings, along with a
 
 const findEvery = (arr, target) => {
   // Solution code here...
+  return arr.every((element) => element.includes(target));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -102,6 +120,9 @@ For example, [['Brook Testing', 'Actual Person'], ['Human Person', 'Brook again'
 
 const unenrollBrook = (arr) => {
   // Solution code here...
+  return arr.map((element) =>
+    element.filter((element) => !element.includes("Brook"))
+  );
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -132,11 +153,19 @@ const daysOfWeek = [
   "Thursday",
   "Friday",
   "Saturday",
-  "Sunday",
+  "Sunday"
 ];
 
 const sortByDay = (arr) => {
   // Solution code here...
+  let sort = [];
+  daysOfWeek.forEach((element, index) => {
+    sort[index] = [];
+    arr.map((item) => {
+      if (item.includes(element)) sort[index].push(item);
+    });
+  });
+  return sort;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -149,6 +178,7 @@ For example, ['abcd', 'efgh', 'ijkl', 'mnop'] returns ['a', 'f', 'k', 'p']
 
 const characterByIndex = (arr) => {
   // Solution code here...
+  return arr.map((element, index) => element.charAt(index));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -170,7 +200,7 @@ describe("Testing challenge 1", () => {
       "Tangerine",
       "Rosie",
       "Mario",
-      "Malaki",
+      "Malaki"
     ];
     const strArray2 = [];
     const strArray3 = ["Ginger"];
@@ -190,7 +220,7 @@ describe("Testing challenge 2", () => {
       "a",
       "b",
       "c",
-      "d",
+      "d"
     ]);
     expect(firstLetters([])).toStrictEqual([]);
   });
@@ -203,18 +233,18 @@ describe("Testing challenge 3", () => {
       "apple (:)",
       ":)banana",
       "missing that thing",
-      "cant:)aloupe",
+      "cant:)aloupe"
     ];
 
     expect(findHappiness(words)).toStrictEqual([
       "apple (:)",
       ":)banana",
-      "cant:)aloupe",
+      "cant:)aloupe"
     ]);
     expect(findHappiness([])).toStrictEqual([]);
     expect(findHappiness(["sadness"])).toStrictEqual([]);
     expect(findHappiness([":) yay", ":( no", "", "", "", ""])).toStrictEqual([
-      ":) yay",
+      ":) yay"
     ]);
   });
 });
@@ -225,7 +255,7 @@ describe("Testing challenge 4", () => {
 
     expect(standardizePhoneNumbers(nums)).toStrictEqual([
       "1234567890",
-      "2222222222",
+      "2222222222"
     ]);
     expect(standardizePhoneNumbers([nums[0]])).toStrictEqual(["1234567890"]);
   });
@@ -247,7 +277,7 @@ describe("Testing challenge 6", () => {
       "apple (:)",
       ":)banana",
       "missing that thing",
-      "cant:)aloupe",
+      "cant:)aloupe"
     ];
 
     expect(allHappy(words)).toStrictEqual(false);
@@ -265,13 +295,13 @@ describe("Testing challenge 7", () => {
       "apple (:)",
       ":)banana",
       "missing that thing",
-      "cant:)aloupe",
+      "cant:)aloupe"
     ];
 
     expect(findAnything(words, ":)")).toStrictEqual(findHappiness(words));
     expect(findAnything(words, "i")).toStrictEqual([
       "things",
-      "missing that thing",
+      "missing that thing"
     ]);
   });
 });
@@ -283,7 +313,7 @@ describe("Testing challenge 8", () => {
       "apple pie (:)",
       ":)banana pie",
       "missing that thing",
-      "cant:)aloupe is tasty",
+      "cant:)aloupe is tasty"
     ];
 
     expect(findEvery(words, "a")).toStrictEqual(false);
@@ -297,13 +327,13 @@ describe("Testing challenge 9", () => {
     const roster = [
       ["Michelle", "Allie", "Brook TESTING"],
       ["Brook Riggio", "hey look it's Brook", "Jennifer"],
-      ["Nicholas", "Sam", "Scott", "Vinicio"],
+      ["Nicholas", "Sam", "Scott", "Vinicio"]
     ];
 
     expect(unenrollBrook(roster)).toStrictEqual([
       ["Michelle", "Allie"],
       ["Jennifer"],
-      ["Nicholas", "Sam", "Scott", "Vinicio"],
+      ["Nicholas", "Sam", "Scott", "Vinicio"]
     ]);
     expect(
       unenrollBrook([["Brook", "person"], [], ["person", "person", "Brook"]])
@@ -319,19 +349,19 @@ describe("Testing challenge 10", () => {
       "Meet the inventors! Monday, August 7",
       "in the club on a Tuesday",
       "Thursday Night Code",
-      "Saturday Night Fever",
+      "Saturday Night Fever"
     ];
     const sortedEvents = sortByDay(events);
     expect(sortedEvents[0]).toEqual(
       expect.arrayContaining([
         "Dancing on Mondays and Tuesdays",
-        "Meet the inventors! Monday, August 7",
+        "Meet the inventors! Monday, August 7"
       ])
     );
     expect(sortedEvents[1]).toEqual(
       expect.arrayContaining([
         "Dancing on Mondays and Tuesdays",
-        "in the club on a Tuesday",
+        "in the club on a Tuesday"
       ])
     );
     expect(sortedEvents[2]).toStrictEqual([]);
@@ -345,7 +375,7 @@ describe("Testing challenge 10", () => {
       "Monday",
       "Wednesday and Thursday",
       "Tuesday 2",
-      "Thursday",
+      "Thursday"
     ];
     const sortedEvents2 = sortByDay(events2);
     expect(sortedEvents2[0]).toStrictEqual(["Monday"]);
@@ -370,12 +400,12 @@ describe("Testing challenge 11", () => {
     expect(characterByIndex(["abc", "def", "ghi"])).toStrictEqual([
       "a",
       "e",
-      "i",
+      "i"
     ]);
     expect(characterByIndex(["wow", "wow", "wow"])).toStrictEqual([
       "w",
       "o",
-      "w",
+      "w"
     ]);
   });
 });
