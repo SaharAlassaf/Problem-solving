@@ -10,6 +10,9 @@ E.g. [4,2,7,5,9,2] -> 9
 ------------------------------------------------------------------------------------------------ */
 const maxInArray = (arr) => {
   // Solution code here...
+  return arr.reduce((accumulator, current) =>
+    accumulator > current ? accumulator : current
+  );
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -28,6 +31,8 @@ return: 23
 ------------------------------------------------------------------------------------------------ */
 const findMax = (matrix) => {
   // Solution code here...
+  // return Math.max(...[].concat(...matrix));   OR
+  return Math.max(...matrix.flat(Infinity));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -46,6 +51,8 @@ return: 35
 ------------------------------------------------------------------------------------------------ */
 const totalSum = (matrix) => {
   // Solution code here...
+  const arr = matrix.flat(Infinity);
+  return arr.reduce((total, num) => total + num, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -72,7 +79,7 @@ const hoursOpen = [
   "5 p.m.",
   "6 p.m.",
   "7 p.m.",
-  "8 p.m.",
+  "8 p.m."
 ];
 
 const firstPike = [17, 18, 23, 24, 24, 12, 13, 27, 30, 20, 24, 18];
@@ -85,6 +92,9 @@ const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
   // Solution code here...
+  return stores.reduce((accumulator, current) =>
+    accumulator.map((element, index) => element + current[index])
+  );
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -99,6 +109,11 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 
 const salesData = (hours, data) => {
   // Solution code here...
+  let sales = [];
+  data.forEach((element, index) =>
+    sales.push({ sales: element + " cookies", time: hours[index] })
+  );
+  return sales;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -113,29 +128,38 @@ const errands = [
     items: [
       { name: "Eggs", quantity: 12 },
       { name: "Milk", quantity: 1 },
-      { name: "Apples", quantity: 3 },
-    ],
+      { name: "Apples", quantity: 3 }
+    ]
   },
   {
     store: "Drug store",
     items: [
       { name: "Toothpaste", quantity: 1 },
       { name: "Toothbrush", quantity: 3 },
-      { name: "Mouthwash", quantity: 1 },
-    ],
+      { name: "Mouthwash", quantity: 1 }
+    ]
   },
   {
     store: "Pet store",
     items: [
       { name: "Cans of food", quantity: 8 },
       { name: "Treats", quantity: 24 },
-      { name: "Leash", quantity: 1 },
-    ],
-  },
+      { name: "Leash", quantity: 1 }
+    ]
+  }
 ];
 
 const howManyTreats = (arr) => {
   // Solution code here...
+  let quantity = 0;
+  errands.map((element) => {
+    element.items.map((element) => {
+      if (element.name === "Treats") {
+        quantity = element.quantity;
+      }
+    });
+  });
+  return quantity;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -158,6 +182,17 @@ The top row of the board is considered row zero and row numbers increase as they
 
 const battleship = (board, row, col) => {
   //  Solution code here...
+  for (let i = 0; i <= row; i++) {
+    for (let j = 0; j <= col; j++) {
+      if (i === row && j === col) {
+        if (board[i][j] === "#") return "hit";
+        else return "miss";
+      }
+    }
+  }
+  // Simple
+  // if(board[row][col] === "#") return "hit"
+  // else return "miss"
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -170,6 +205,8 @@ For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 
 const calculateProduct = (numbers) => {
   // Solution code here...
+  const arr = numbers.flat(Infinity);
+  return arr.reduce((total, num) => total * num, 1);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -185,11 +222,14 @@ const weeklyTemperatures = [
   [66, 64, 58, 65, 71, 57, 60],
   [57, 65, 65, 70, 72, 65, 51],
   [55, 54, 60, 53, 59, 57, 61],
-  [65, 56, 55, 52, 55, 62, 57],
+  [65, 56, 55, 52, 55, 62, 57]
 ];
 
 const averageDailyTemperature = (weather) => {
   // Solution code here...
+  const arr = weather.flat(Infinity);
+  const average = arr.reduce((sum, value) => sum + value, 0) / arr.length;
+  return average;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -206,11 +246,17 @@ let lowestWeeklyTemperatureData = [
   [33, 64, 58, 65, 71, 57, 60],
   [40, 45, 33, 53, 44, 59, 48],
   [55, 54, 60, 53, 59, 57, 61],
-  [65, 56, 55, 52, 55, 62, 57],
+  [65, 56, 55, 52, 55, 62, 57]
 ];
 
 const lowestWeeklyAverage = (weather) => {
   // Solution code here...
+  const average = weather.map(
+    (element) =>
+      element.reduce((accumulator, current) => accumulator + current) /
+      element.length
+  );
+  return Math.min(...average);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -227,6 +273,15 @@ For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 
 const excel = (str) => {
   // Solution code here...
+  let arr = str.split("\n");
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = arr[i].split(",");
+  }
+  return arr.map((element) =>
+    element.reduce(
+      (accumulator, current) => Number(accumulator) + Number(current)
+    )
+  );
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -255,7 +310,7 @@ describe("Testing challenge 2", () => {
       findMax([
         [13, 24, 24, 2],
         [2, 5, 6],
-        [2, 3],
+        [2, 3]
       ])
     ).toStrictEqual(24);
   });
@@ -267,7 +322,7 @@ describe("Testing challenge 3", () => {
       totalSum([
         [13, 24, 24, 2],
         [2, 5, 6],
-        [2, 3],
+        [2, 3]
       ])
     ).toStrictEqual(81);
     expect(totalSum([])).toStrictEqual(0);
@@ -277,7 +332,7 @@ describe("Testing challenge 3", () => {
 describe("Testing challenge 4", () => {
   test("It should add the hourly totals array", () => {
     expect(grandTotal(cookieStores)).toStrictEqual([
-      88, 153, 252, 286, 139, 161, 145, 232, 276, 207, 161, 169,
+      88, 153, 252, 286, 139, 161, 145, 232, 276, 207, 161, 169
     ]);
   });
 });
@@ -296,7 +351,7 @@ describe("Testing challenge 5", () => {
       { sales: "276 cookies", time: "5 p.m." },
       { sales: "207 cookies", time: "6 p.m." },
       { sales: "161 cookies", time: "7 p.m." },
-      { sales: "169 cookies", time: "8 p.m." },
+      { sales: "169 cookies", time: "8 p.m." }
     ]);
 
     expect(salesData(hoursOpen, grandTotal(cookieStores)).length).toStrictEqual(
@@ -316,7 +371,7 @@ describe("Testing challenge 7", () => {
     ["#", " ", "#", " "],
     ["#", " ", "#", " "],
     ["#", " ", " ", " "],
-    [" ", " ", "#", "#"],
+    [" ", " ", "#", "#"]
   ];
 
   test('It should return "hit" when it hits a boat', () => {
@@ -336,7 +391,7 @@ describe("Testing challenge 8", () => {
       calculateProduct([
         [1, 2],
         [3, 4],
-        [5, 6],
+        [5, 6]
       ])
     ).toStrictEqual(720);
   });
@@ -346,7 +401,7 @@ describe("Testing challenge 8", () => {
       calculateProduct([
         [2, 3, 4, 6, 0],
         [4, 3, 7],
-        [2, 4, 6],
+        [2, 4, 6]
       ])
     ).toStrictEqual(0);
   });
